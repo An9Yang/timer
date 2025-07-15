@@ -182,9 +182,10 @@ body {
 }
 
 .active-timers {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
 }
 
 /* Timer Card */
@@ -194,10 +195,15 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 400px;
 }
 
 .timer-card:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
 }
 
 .timer-card-header {
@@ -265,26 +271,31 @@ body {
 }
 
 .timer-card-content {
-    padding: 24px;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .timer-display {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 300;
     color: var(--mdc-theme-primary);
     text-align: center;
-    margin: 24px 0;
+    margin: 16px 0;
     font-family: 'Roboto Mono', monospace;
     letter-spacing: 2px;
     line-height: 1.2;
-    min-height: 58px; /* 防止内容跳动 */
+    min-height: 48px; /* 防止内容跳动 */
 }
 
 /* Sub-timers Section */
 .sub-timers-section {
-    margin-top: 24px;
-    padding-top: 24px;
+    margin-top: auto;
+    padding-top: 16px;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .sub-timers-header {
@@ -388,8 +399,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    margin-top: 24px;
+    gap: 12px;
+    margin-top: 16px;
     flex-wrap: wrap;
 }
 
@@ -430,6 +441,20 @@ body {
     margin-top: 16px;
 }
 
+/* 响应式网格布局 */
+@media (max-width: 1200px) {
+    .active-timers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .active-timers {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .app-content {
@@ -437,9 +462,13 @@ body {
     }
     
     .timer-display {
-        font-size: 36px;
-        margin: 16px 0;
-        min-height: 44px;
+        font-size: 32px;
+        margin: 12px 0;
+        min-height: 40px;
+    }
+    
+    .timer-card {
+        min-height: 350px;
     }
     
     .sub-timer-display {
@@ -616,13 +645,52 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* 确保计时器卡片之间有合适的间距 */
-.timer-card + .timer-card {
-    margin-top: 16px;
+/* 空状态样式优化 */
+.active-timers .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
 }
 
 /* 优化空状态图标显示 */
 .empty-state i.material-icons {
     width: auto;
     height: auto;
+}
+
+/* 子计时器滚动条样式 */
+.sub-timers-section {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+.sub-timers-section::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sub-timers-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.sub-timers-section::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 2px;
+}
+
+.sub-timers-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 优化按钮大小以适应网格布局 */
+.timer-controls .mdc-button {
+    font-size: 13px;
+    padding: 0 12px;
+    height: 32px;
+}
+
+.sub-timers-header .mdc-button {
+    font-size: 12px;
+    padding: 0 10px;
+    height: 28px;
 }
