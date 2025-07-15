@@ -467,11 +467,21 @@ class TimerApp {
         const data = {
             tabs: this.tabs
         };
-        localStorage.setItem('timerAppData', JSON.stringify(data));
+        localStorage.setItem('benchmarkTimerData', JSON.stringify(data));
     }
 
     loadData() {
-        const savedData = localStorage.getItem('timerAppData');
+        // 先尝试加载新的键名，如果没有则尝试旧的键名以兼容旧数据
+        let savedData = localStorage.getItem('benchmarkTimerData');
+        if (!savedData) {
+            savedData = localStorage.getItem('timerAppData');
+            // 如果有旧数据，迁移到新键名
+            if (savedData) {
+                localStorage.setItem('benchmarkTimerData', savedData);
+                localStorage.removeItem('timerAppData');
+            }
+        }
+        
         if (savedData) {
             const data = JSON.parse(savedData);
             this.tabs = data.tabs || [];
