@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多标签计时器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>多标签计时器</h1>
+        </header>
+        
+        <div class="tab-pool-container">
+            <div class="tab-pool-header">
+                <h2>标签池</h2>
+                <button id="add-tab-btn" class="btn-primary">+ 新建标签</button>
+            </div>
+            <div id="tab-pool" class="tab-pool">
+                <!-- 标签将动态添加到这里 -->
+            </div>
+        </div>
+        
+        <div class="active-timers-container">
+            <h2>活动计时器</h2>
+            <div id="active-timers" class="active-timers">
+                <!-- 活动的计时单元将动态添加到这里 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 新建标签弹窗 -->
+    <div id="tab-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>创建新标签</h3>
+            <input type="text" id="tab-name-input" placeholder="输入标签名称" maxlength="50">
+            <div class="modal-buttons">
+                <button id="save-tab-btn" class="btn-primary">保存</button>
+                <button id="cancel-tab-btn" class="btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

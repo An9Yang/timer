@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多标签计时器 - Material Design</title>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Roboto Mono for timer display -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Material Components Web CSS -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles-material.css">
+</head>
+<body class="mdc-typography">
+    <!-- App Bar -->
+    <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title">多标签计时器</span>
+            </section>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mdc-top-app-bar--fixed-adjust">
+        <div class="app-content">
+            <!-- Tab Pool Section -->
+            <div class="mdc-card tab-pool-card">
+                <div class="card-header">
+                    <h2 class="mdc-typography--headline6">标签池</h2>
+                    <button class="mdc-fab mdc-fab--mini" id="add-tab-btn" aria-label="添加标签">
+                        <div class="mdc-fab__ripple"></div>
+                        <span class="mdc-fab__icon material-icons">add</span>
+                    </button>
+                </div>
+                <div class="mdc-card__content">
+                    <div id="tab-pool" class="tab-pool">
+                        <!-- 标签将动态添加到这里 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Timers Section -->
+            <div class="timers-section">
+                <h2 class="mdc-typography--headline6 section-title">活动计时器</h2>
+                <div id="active-timers" class="active-timers">
+                    <!-- 活动的计时单元将动态添加到这里 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Dialog for New Tab -->
+    <div class="mdc-dialog" id="tab-dialog">
+        <div class="mdc-dialog__container">
+            <div class="mdc-dialog__surface">
+                <h2 class="mdc-dialog__title">创建新标签</h2>
+                <div class="mdc-dialog__content">
+                    <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--fullwidth">
+                        <input type="text" id="tab-name-input" class="mdc-text-field__input" maxlength="50">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="tab-name-input" class="mdc-floating-label">标签名称</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-dialog__actions">
+                    <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">取消</span>
+                    </button>
+                    <button type="button" class="mdc-button mdc-button--raised mdc-dialog__button" data-mdc-dialog-action="save">
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">保存</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+    </div>
+
+    <!-- Snackbar for notifications -->
+    <div class="mdc-snackbar">
+        <div class="mdc-snackbar__surface">
+            <div class="mdc-snackbar__label"></div>
+        </div>
+    </div>
+
+    <!-- Material Components Web JS -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script-material.js"></script>
+</body>
+</html>
